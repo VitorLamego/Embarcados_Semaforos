@@ -2,10 +2,19 @@
 #include <wiringPi.h>
 #include <unistd.h>
 #include <sys/time.h>
-#include "handler.h"
-#include "buttons_config.h"
-#include "variables.h"
-#include "../servidor_central/cliente.h"
+#include <pthread.h>
+#include "includes/handler.h"
+#include "includes/buttons_config.h"
+#include "includes/variables.h"
+#include "includes/message.h"
+#include "includes/cliente.h"
+
+void* send2SecMessage () {
+    while (1) {
+        delay(2000);
+        buildPassMessage();
+    }
+}
 
 int main(void) {
     // Cruzamento 1
@@ -22,6 +31,11 @@ int main(void) {
 
     setButtons();
 
+    pthread_t messagemPassagem2s;
+	int res0;
+
+	res0 = pthread_create(&messagemPassagem2s, NULL, send2SecMessage, NULL);
+
     while(1) {
         for (estado = 0; estado < 6; estado++) {
             for (int i = 0; i < 3; i++) {
@@ -37,7 +51,6 @@ int main(void) {
                 sleep(1);
                 seconds++;
             }
-            sendMessage("Estado alterado!");
         }
     }
 

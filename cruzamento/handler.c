@@ -2,7 +2,7 @@
 #include <wiringPi.h>
 #include <unistd.h>
 #include <sys/time.h>
-#include "variables.h"
+#include "includes/variables.h"
 
 struct timeval last_changePeople;
 struct timeval last_changePassAux;

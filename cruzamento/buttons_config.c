@@ -1,8 +1,8 @@
 #include <wiringPi.h>
 #include <unistd.h>
 #include <sys/time.h>
-#include "variables.h"
-#include "handler.h"
+#include "includes/variables.h"
+#include "includes/handler.h"
 
 void setPinModeSemaforos (int semaforo[3]) {
     for (int i = 0; i < 3; i++) pinMode(semaforo[i], OUTPUT);
