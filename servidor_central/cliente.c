@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <sys/time.h>
 
-int main(int argc, char *argv[]) {
+void sendMessage(char *message) {
 	int clienteSocket;
 	struct sockaddr_in servidorAddr;
 	unsigned short servidorPorta;
@@ -18,14 +18,9 @@ int main(int argc, char *argv[]) {
 	int bytesRecebidos;
 	int totalBytesRecebidos;
 
-	if ((argc < 3) || (argc > 4)) {
-		printf("Uso: %s <IP do Servidor> <Porta> <Mensagem>\n", argv[0]);
-		exit(1);
-	}
-
-	IP_Servidor = argv[1];
-	servidorPorta = atoi(argv[2]);
-	mensagem = argv[3];
+	IP_Servidor = "164.41.98.26";
+	servidorPorta = 10351;
+	mensagem = message;
 
 	// Criar Socket
 	if((clienteSocket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
@@ -47,8 +42,6 @@ int main(int argc, char *argv[]) {
 	if(send(clienteSocket, mensagem, tamanhoMensagem, 0) != tamanhoMensagem)
 		printf("Erro no envio: numero de bytes enviados diferente do esperado\n");
 
-	if(send(clienteSocket, "Mensgaem2", tamanhoMensagem, 0) != tamanhoMensagem)
-		printf("Erro no envio: numero de bytes enviados diferente do esperado\n");
 	totalBytesRecebidos = 0;
 	while(totalBytesRecebidos < tamanhoMensagem) {
 		if((bytesRecebidos = recv(clienteSocket, buffer, 40-1, 0)) <= 0)
@@ -60,5 +53,4 @@ int main(int argc, char *argv[]) {
 
 	
 	close(clienteSocket);
-	exit(0);
 }

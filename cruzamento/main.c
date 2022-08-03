@@ -5,6 +5,7 @@
 #include "handler.h"
 #include "buttons_config.h"
 #include "variables.h"
+#include "../servidor_central/cliente.h"
 
 int main(void) {
     // Cruzamento 1
@@ -36,6 +37,7 @@ int main(void) {
                 sleep(1);
                 seconds++;
             }
+            sendMessage("Estado alterado!");
         }
     }
 

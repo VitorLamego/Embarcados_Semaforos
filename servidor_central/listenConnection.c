@@ -56,7 +56,7 @@ void* create_socket (void *port) {
 			                      &clienteLength)) < 0)
 			printf("Falha no Accept\n");
 		
-		printf("Conexão do Cliente %s\n", inet_ntoa(clienteAddr.sin_addr));
+		// printf("Conexão do Cliente %s\n", inet_ntoa(clienteAddr.sin_addr));
 		
 		TrataClienteTCP(socketCliente);
 	}
