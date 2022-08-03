@@ -1,2 +1,7 @@
 // Sistema Distribuído
-gcc main.c variables.c buttons_config.c handler.c -o main -lwiringPi
+gcc main.c variables.c buttons_config.c handler.c ../servidor_central/cliente.c -o main -lwiringPi
+
+// Servidor central
+gcc main.c listenConnection.c  -o main -lpthread
+
+./main 10351

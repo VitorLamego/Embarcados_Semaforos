@@ -9,23 +9,23 @@
 // Servidor Central Recebendo Mensagem dos Distribuídos
 
 void TrataClienteTCP(int socketCliente) {
-	char buffer[40];
+	char buffer[1000];
 	int tamanhoRecebido;
 
-	if((tamanhoRecebido = recv(socketCliente, buffer, 40, 0)) < 0)
+	if((tamanhoRecebido = recv(socketCliente, buffer, 1000, 0)) < 0)
 		printf("Erro no recv()\n");
 
 	printf("%s\n", buffer);
 	while (tamanhoRecebido > 0) {
-		if(send(socketCliente, "Teste", tamanhoRecebido, 0) != tamanhoRecebido)
-			printf("Erro no envio - send()\n");
+		// if(send(socketCliente, "Teste", tamanhoRecebido, 0) != tamanhoRecebido)
+		// 	printf("Erro no envio - send()\n");
 		
-		if((tamanhoRecebido = recv(socketCliente, buffer, 40, 0)) < 0)
+		if((tamanhoRecebido = recv(socketCliente, buffer, 1000, 0)) < 0)
 			printf("Erro no recv()\n");
 	}
 }
 
-void* create_socket (void *port) {
+void* create_socket (void) {
 	int servidorSocket;
 	int socketCliente;
 	struct sockaddr_in servidorAddr;
@@ -33,7 +33,7 @@ void* create_socket (void *port) {
 	unsigned short servidorPorta;
 	unsigned int clienteLength;
 
-	servidorPorta = atoi(port);
+	servidorPorta = atoi("10351");
 
 	if((servidorSocket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
 		printf("falha no socker do Servidor\n");

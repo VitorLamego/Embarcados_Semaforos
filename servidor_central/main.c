@@ -5,7 +5,7 @@
 #include <pthread.h>
 #include <arpa/inet.h>
 #include <string.h>
-#include "listenConnection.h"
+#include "includes/listenConnection.h"
 
 
 int main (int argc, char** argv) {
@@ -13,7 +13,7 @@ int main (int argc, char** argv) {
 	pthread_t t0;
 	int res0;
 
-	res0 = pthread_create(&t0, NULL, create_socket, (void *) argv[1]);
+	res0 = pthread_create(&t0, NULL, create_socket, NULL);
     pthread_join(t0, NULL); // Blocante
 
 
