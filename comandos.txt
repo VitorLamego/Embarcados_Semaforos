@@ -1,0 +1,2 @@
+// Sistema Distribuído
+gcc main.c variables.c buttons_config.c handler.c -o main -lwiringPi
