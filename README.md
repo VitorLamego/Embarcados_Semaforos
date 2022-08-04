@@ -13,7 +13,7 @@ servidor_central/src/cliente.c - Linha 47 a 50
 Para correta execução do servidor central rode os seguintes comandos: 
 
 ```
-cd trabalho1/servidor_central
+cd Embarcados_Semaforos/servidor_central
 make
 bin/run
 ```
@@ -22,7 +22,7 @@ bin/run
 
 Para correta execução dos servidores distribuídos, primeiramente, substitua no código o endereço IP das placas, se necessário:
 
-```
+```ß
 IPs atuais:
 
 Cruzamento: 1 e 2 - 164.41.98.17
@@ -34,7 +34,7 @@ Substitua os ips, caso seja necessário e ainda não tenha sido feito na etapa d
 Rode os comandos:
 
 ```
-cd trabalho1/cruzamentos
+cd Embarcados_Semaforos/cruzamentos
 make
 bin/run ${Número do cruzamento}
 ```
