@@ -14,6 +14,9 @@ extern int count_prin_velo;
 extern int velocitySum;
 extern int minutes;
 
+extern int EMERGENCY_MODE;
+extern int NIGHT_MODE;
+
 // Botoes de pedestre
 extern int BOTAO_PEDESTRE_1;
 extern int BOTAO_PEDESTRE_2;
@@ -31,5 +34,8 @@ extern int SENSOR_VELOCIDADE_2_B;
 
 extern int semaforo1[3];
 extern int semaforo2[3];
+
+extern char IP[20];
+extern char portClient[6];
 
 extern void setVariables (char*);

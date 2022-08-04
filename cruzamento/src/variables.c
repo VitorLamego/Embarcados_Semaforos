@@ -20,6 +20,9 @@ int count_prin_velo = 0;
 int velocitySum = 0;
 int minutes = 0;
 
+int EMERGENCY_MODE = 0;
+int NIGHT_MODE = 0;
+
 // Botoes de pedestre
 int BOTAO_PEDESTRE_1;
 int BOTAO_PEDESTRE_2;
@@ -38,6 +41,9 @@ int SENSOR_VELOCIDADE_2_B;
 // Semaforos LEDS
 int semaforo1[3]; // VIA PRINCIPAL
 int semaforo2[3]; // Verde-Amarelo-Vermelho
+
+char IP[20];
+char portClient[6];
 
 void setVariables(char *cruzamento1) {
     if (strcmp(cruzamento1, "1") == 0 || strcmp(cruzamento1, "3") == 0) {
@@ -59,6 +65,9 @@ void setVariables(char *cruzamento1) {
 
         semaforo1[0] = 28; semaforo1[1] = 27; semaforo1[2] = 26;
         semaforo2[0] = 31; semaforo2[1] = 25; semaforo2[2] = 29;
+        
+        if (strcmp(cruzamento1, "1") == 0) {strcpy(IP, "164.41.98.17"); strcpy(portClient, "10352");}
+        else {strcpy(IP, "164.41.98.26"); strcpy(portClient, "10354");}
     }
     else {
         cruzamento = atoi(cruzamento1);
@@ -80,5 +89,8 @@ void setVariables(char *cruzamento1) {
         // Semaforos LEDS
         semaforo1[0] = 30; semaforo1[1] = 21; semaforo1[2] = 22;
         semaforo2[0] = 8; semaforo2[1] = 9; semaforo2[2] = 14;
+
+        if (strcmp(cruzamento1, "2") == 0) {strcpy(IP, "164.41.98.17"); strcpy(portClient, "10353");}
+        else {strcpy(IP, "164.41.98.26"); strcpy(portClient, "10355");}
     }
 }
