@@ -6,7 +6,7 @@ void printMenu() {
         printf("\n--- Servidor Central ---\n");
         printf("1. Verificar reportes normais\n");
         printf("2. Verificar reportes de velocidade / infraçao\n");
-        printf("3. Comando\n");
+        printf("3. Comando ( Não implementado )\n");
 
         printf("Escolha a sua opcao: \n");
 
