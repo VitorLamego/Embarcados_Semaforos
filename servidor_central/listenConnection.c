@@ -17,8 +17,8 @@ void TrataClienteTCP(int socketCliente) {
 
 	printf("%s\n", buffer);
 	while (tamanhoRecebido > 0) {
-		// if(send(socketCliente, "Teste", tamanhoRecebido, 0) != tamanhoRecebido)
-		// 	printf("Erro no envio - send()\n");
+		if(send(socketCliente, "", tamanhoRecebido, 0) != tamanhoRecebido)
+			printf("Erro no envio - send()\n");
 		
 		if((tamanhoRecebido = recv(socketCliente, buffer, 1000, 0)) < 0)
 			printf("Erro no recv()\n");
@@ -56,9 +56,6 @@ void* create_socket (void) {
 			                      &clienteLength)) < 0)
 			printf("Falha no Accept\n");
 		
-		// printf("Conexão do Cliente %s\n", inet_ntoa(clienteAddr.sin_addr));
-		
 		TrataClienteTCP(socketCliente);
 	}
-	close(servidorSocket);
 }

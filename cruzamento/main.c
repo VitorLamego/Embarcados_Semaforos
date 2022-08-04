@@ -32,7 +32,7 @@ void* semaforoController () {
             int seconds = 0;
             TEMP_ATUAL = delayMax[estado];
             while (seconds < TEMP_ATUAL) {
-                sleep(1);
+                delay(1000);
                 seconds++;
             }
         }
@@ -54,8 +54,8 @@ int main(int argc, char** argv) {
     pthread_t semaforos;
 	int res0, res1;
 
-	res0 = pthread_create(&messagemPassagem2s, NULL, send2SecMessage, NULL);
     res1 = pthread_create(&semaforos, NULL, semaforoController, NULL);
+	res0 = pthread_create(&messagemPassagem2s, NULL, send2SecMessage, NULL);
 
     while(1){}
 

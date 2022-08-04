@@ -1,3 +1,4 @@
+extern int cruzamento;
 extern int TEMP_ATUAL;
 extern int delayMin[6];
 extern int delayMax[6];

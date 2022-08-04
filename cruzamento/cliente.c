@@ -50,6 +50,5 @@ void sendMessage(char *message) {
 		buffer[bytesRecebidos] = '\0';
 		printf("%s\n", buffer);
 	}
-
 	close(clienteSocket);
 }

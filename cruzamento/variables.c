@@ -2,7 +2,9 @@
 #include <sys/time.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
+int cruzamento;
 int TEMP_ATUAL = 0;
 int delayMin[6] = {10, 3, 1, 5, 3, 1};
 int delayMax[6] = {20, 3, 1, 10, 3, 1};
@@ -32,7 +34,10 @@ int semaforo1[3]; // VIA PRINCIPAL
 int semaforo2[3]; // Verde-Amarelo-Vermelho
 
 void setVariables(char *cruzamento1) {
-    if (!strcmp(cruzamento1, "1")) {
+    int teste = strcmp(cruzamento1, "1");
+    printf("%d\n", teste);
+    if (strcmp(cruzamento1, "1") == 0 || strcmp(cruzamento1, "3")) {
+        cruzamento = atoi(cruzamento1);
         // Botoes de pedestre
         BOTAO_PEDESTRE_1 = 10;
         BOTAO_PEDESTRE_2 = 11;
