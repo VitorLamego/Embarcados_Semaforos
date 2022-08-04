@@ -1,5 +1,6 @@
 extern int TEMP_ATUAL;
 extern int delayMin[6];
+extern int delayMax[6];
 extern int estado;
 extern int count_passagem1_auxiliar;
 extern int count_passagem2_auxiliar;
@@ -21,8 +22,7 @@ extern int SENSOR_VELOCIDADE_1_B ;
 extern int SENSOR_VELOCIDADE_2_A;
 extern int SENSOR_VELOCIDADE_2_B;
 
-// extern struct timeval last_changePeople;
-// extern struct timeval last_changePassAux;
-// extern struct timeval last_changePassPrin;
-// extern struct timeval last_changeStopPrin;
-// extern struct timeval last_changeStopPrin2;
+extern int semaforo1[3];
+extern int semaforo2[3];
+
+extern void setVariables (char*);

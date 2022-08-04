@@ -16,26 +16,10 @@ void* send2SecMessage () {
     }
 }
 
-int main(void) {
-    // Cruzamento 1
-    int semaforo1[3] = {28, 27, 26}; // VIA PRINCIPAL
-    int semaforo2[3] = {31, 25, 29}; // Verde-Amarelo-Vermelho
+void* semaforoController () {
     int estados1[6][3] = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}, {0, 0, 1}, {0, 0, 1}, {0, 0, 1}};
     int estados2[6][3] = {{0, 0, 1}, {0, 0, 1}, {0, 0, 1}, {1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
-    int delayMax[6] = {20, 3, 1, 10, 3, 1};
-
-    wiringPiSetup();
-
-    setPinModeSemaforos(semaforo1);
-    setPinModeSemaforos(semaforo2);
-
-    setButtons();
-
-    pthread_t messagemPassagem2s;
-	int res0;
-
-	res0 = pthread_create(&messagemPassagem2s, NULL, send2SecMessage, NULL);
-
+    
     while(1) {
         for (estado = 0; estado < 6; estado++) {
             for (int i = 0; i < 3; i++) {
@@ -53,6 +37,28 @@ int main(void) {
             }
         }
     }
+}
+
+int main(int argc, char** argv) {
+    // Cruzamento 1
+
+    wiringPiSetup();
+    int number;
+    setVariables(argv[1]);
+
+    setPinModeSemaforos(semaforo1);
+    setPinModeSemaforos(semaforo2);
+
+    setButtons();
+
+    pthread_t messagemPassagem2s;
+    pthread_t semaforos;
+	int res0, res1;
+
+	res0 = pthread_create(&messagemPassagem2s, NULL, send2SecMessage, NULL);
+    res1 = pthread_create(&semaforos, NULL, semaforoController, NULL);
+
+    while(1){}
 
     return 0;
 }
