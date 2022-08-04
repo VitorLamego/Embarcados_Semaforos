@@ -48,7 +48,6 @@ void sendMessage(char *message) {
 			printf("Não recebeu o total de bytes enviados\n");
 		totalBytesRecebidos += bytesRecebidos;
 		buffer[bytesRecebidos] = '\0';
-		printf("%s\n", buffer);
 	}
 	close(clienteSocket);
 }

@@ -34,9 +34,7 @@ int semaforo1[3]; // VIA PRINCIPAL
 int semaforo2[3]; // Verde-Amarelo-Vermelho
 
 void setVariables(char *cruzamento1) {
-    int teste = strcmp(cruzamento1, "1");
-    printf("%d\n", teste);
-    if (strcmp(cruzamento1, "1") == 0 || strcmp(cruzamento1, "3")) {
+    if (strcmp(cruzamento1, "1") == 0 || strcmp(cruzamento1, "3") == 0) {
         cruzamento = atoi(cruzamento1);
         // Botoes de pedestre
         BOTAO_PEDESTRE_1 = 10;
@@ -57,6 +55,7 @@ void setVariables(char *cruzamento1) {
         semaforo2[0] = 31; semaforo2[1] = 25; semaforo2[2] = 29;
     }
     else {
+        cruzamento = atoi(cruzamento1);
         // Botoes de pedestre
         BOTAO_PEDESTRE_1 = 12;
         BOTAO_PEDESTRE_2 = 13;
