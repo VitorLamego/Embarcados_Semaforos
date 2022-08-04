@@ -5,17 +5,19 @@
 #include <pthread.h>
 #include <arpa/inet.h>
 #include <string.h>
+#include "../includes/variables.h"
 
 // Servidor Central Recebendo Mensagem dos Distribuídos
 
 void TrataClienteTCP(int socketCliente) {
-	char buffer[1000];
+	char buffer[1000] = "";
 	int tamanhoRecebido;
 
 	if((tamanhoRecebido = recv(socketCliente, buffer, 1000, 0)) < 0)
 		printf("Erro no recv()\n");
-
-	printf("%s\n", buffer);
+	if (tamanhoRecebido < 70 && REPORTES_SERIOS) printf("%s\n", buffer);
+	else if (tamanhoRecebido > 70 && REPORTES_NORMAIS) printf("%s\n", buffer);
+	else {}
 	while (tamanhoRecebido > 0) {
 		if(send(socketCliente, "", tamanhoRecebido, 0) != tamanhoRecebido)
 			printf("Erro no envio - send()\n");

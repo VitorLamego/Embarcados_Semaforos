@@ -1,0 +1,2 @@
+extern int REPORTES_NORMAIS;
+extern int REPORTES_SERIOS;

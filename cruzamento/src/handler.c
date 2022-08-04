@@ -59,7 +59,6 @@ void handleCarSensorAuxiliar(void) {
             }
             else {
                 if (estado == 0) {
-                    printf("Reduzindo semáforo da principal\n"); 
                     TEMP_ATUAL = delayMin[0];
                 }
             } 
@@ -72,7 +71,6 @@ void handleCarSensorAuxiliar(void) {
             }
             else {
                 if (estado == 0) {
-                    printf("Reduzindo semáforo da principal\n"); 
                     TEMP_ATUAL = delayMin[0];
                 }
             }
@@ -125,15 +123,10 @@ void handleStopPrincipal(void) {
 	if (diff > 10000) {
         if (stop1_prin_state) {   
             if (estado == 3) {
-                printf("Reduzindo tempo da auxiliar\n");
                 TEMP_ATUAL = delayMin[3];
             }
             count_prin1++;
         }
-        // else if (stop1_prin_state && !digitalRead(SENSOR_VELOCIDADE_1_A)) {
-        //     printf("Principal direita: %d\n", ++count_prin1);
-        //     if (estado > 2) printf("Ultrapassagem no vermelho - Principal Direita\n");
-        // }
         else {
             gettimeofday(&second_sensor_time1, NULL);
 
@@ -141,16 +134,14 @@ void handleStopPrincipal(void) {
             float velocity;
             if (ms_difference >= 30.0) {
                 velocity = (3.6/(ms_difference)) * 1000;
-                printf("Velocidade: %.1f km/h\n", velocity);
-
-                if (velocity > 60.0) printf("Limite de velocidade ultrapassado\n");
+                buildNormalVelocityMessage(velocity);
             }
 
             if (estado > 2) { 
                 count_prin_verm++;
                 buildInfringementMessage();
             }
-            else if (velocity > 60.0) count_prin_velo++;
+            else if (velocity > 60.0) {count_prin_velo++; buildVelocityMessage(velocity);}
             else ++count_prin1;
         }
         stop1_prin_state = 1;    
@@ -168,15 +159,10 @@ void handleStopPrincipal2 (void) {
 	if (diff > 10000) {
         if (stop2_prin_state) {
             if (estado == 3) {
-                printf("Reduzindo tempo da auxiliar\n");
                 TEMP_ATUAL = delayMin[3];
             }
             count_prin2++;
         }
-        // else if (stop2_prin_state ) {
-        //     printf("Principal esquerda: %d\n", ++count_prin2);
-        //     if (estado > 2) printf("Ultrapassagem no vermelho - Principal Esquerda\n");
-        // }
         else {
             gettimeofday(&second_sensor_time2, NULL);
 
@@ -184,13 +170,13 @@ void handleStopPrincipal2 (void) {
             float velocity;
             if (ms_difference >= 30.0) {
                 velocity = (3.6/(ms_difference)) * 1000;
-                printf("Velocidade: %.1f km/h\n", velocity);
+                buildVelocityMessage(velocity);
             }
             if (estado > 2) { 
                 count_prin_verm++;
                 buildInfringementMessage();
             }
-            else if (velocity > 60.0) count_prin_velo++;
+            else if (velocity > 60.0) {count_prin_velo++; buildVelocityMessage(velocity);}
             else count_prin2++;
         }
         stop2_prin_state = 1;
