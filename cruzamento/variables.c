@@ -11,8 +11,11 @@ int delayMax[6] = {20, 3, 1, 10, 3, 1};
 int estado = 0;
 int count_passagem1_auxiliar = 0;
 int count_passagem2_auxiliar = 0;
+int count_passagem_aux_vermelho = 0;
 int count_prin1 = 0;
 int count_prin2 = 0;
+int count_prin_verm = 0;
+int count_prin_velo = 0;
 
 // Botoes de pedestre
 int BOTAO_PEDESTRE_1;

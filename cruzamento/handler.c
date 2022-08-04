@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <sys/time.h>
 #include "includes/variables.h"
+#include "includes/message.h"
 
 struct timeval last_changePeople;
 struct timeval last_changePassAux;
@@ -32,11 +33,9 @@ void handlePassPeopleButton(void) {
 
 	if (diff > 10000) {
         if (digitalRead(BOTAO_PEDESTRE_1)) {
-            printf("Botão 1 pressionado!\n");     
             if (estado == 3) {TEMP_ATUAL = delayMin[3];}
         }
         else if (digitalRead(BOTAO_PEDESTRE_2)) {
-            printf("Botão 2 pressionado \n");
 		    if (estado == 0) {TEMP_ATUAL = delayMin[0];}
         }
 	}
@@ -54,8 +53,9 @@ void handleCarSensorAuxiliar(void) {
 	if (diff > 10000) {
         if (digitalRead(SENSOR_PASSAGEM_1) != passagem1_aux_state) {
             if (passagem1_aux_state) {
-                printf("Auxiliar descendo %d\n", ++count_passagem1_auxiliar);
-                if (estado != 3 && estado != 4) printf("Ultrapassagem pelo vermelho\n");
+                if (estado != 3 && estado != 4) count_passagem_aux_vermelho++;
+                else ++count_passagem1_auxiliar;
+
             }
             else {
                 if (estado == 0) {
@@ -67,8 +67,8 @@ void handleCarSensorAuxiliar(void) {
         } 
         else if (digitalRead(SENSOR_PASSAGEM_2) != passagem2_aux_state) {
             if (passagem2_aux_state) {
-                printf("Auxiliar subindo %d\n", ++count_passagem2_auxiliar);
-                if (estado != 3 && estado != 4) printf("Ultrapassagem pelo vermelho\n");
+                if (estado != 3 && estado != 4) count_passagem_aux_vermelho++;
+                else ++count_passagem2_auxiliar;
             }
             else {
                 if (estado == 0) {
@@ -137,16 +137,21 @@ void handleStopPrincipal(void) {
         else {
             gettimeofday(&second_sensor_time1, NULL);
 
-            printf("Principal direita: %d\n", ++count_prin1);
-            if (estado > 2) printf("Ultrapassagem no vermelho\n");
-
             float ms_difference = (second_sensor_time1.tv_usec - first_sensor_time1.tv_usec)/1000;
+            float velocity;
             if (ms_difference >= 30.0) {
-                float velocity = (3.6/(ms_difference)) * 1000;
+                velocity = (3.6/(ms_difference)) * 1000;
                 printf("Velocidade: %.1f km/h\n", velocity);
 
                 if (velocity > 60.0) printf("Limite de velocidade ultrapassado\n");
             }
+
+            if (estado > 2) { 
+                count_prin_verm++;
+                buildInfringementMessage();
+            }
+            else if (velocity > 60.0) count_prin_velo++;
+            else ++count_prin1;
         }
         stop1_prin_state = 1;    
 	}
@@ -175,16 +180,18 @@ void handleStopPrincipal2 (void) {
         else {
             gettimeofday(&second_sensor_time2, NULL);
 
-            printf("Principal esquerda: %d\n", ++count_prin2);
-            if (estado > 2) printf("Ultrapassagem no vermelho\n");
-
             float ms_difference = (second_sensor_time2.tv_usec - first_sensor_time2.tv_usec)/1000;
+            float velocity;
             if (ms_difference >= 30.0) {
-                float velocity = (3.6/(ms_difference)) * 1000;
+                velocity = (3.6/(ms_difference)) * 1000;
                 printf("Velocidade: %.1f km/h\n", velocity);
-
-                if (velocity > 60.0) printf("Limite de velocidade ultrapassado\n");
             }
+            if (estado > 2) { 
+                count_prin_verm++;
+                buildInfringementMessage();
+            }
+            else if (velocity > 60.0) count_prin_velo++;
+            else count_prin2++;
         }
         stop2_prin_state = 1;
     }

@@ -5,8 +5,11 @@ extern int delayMax[6];
 extern int estado;
 extern int count_passagem1_auxiliar;
 extern int count_passagem2_auxiliar;
+extern int count_passagem_aux_vermelho;
 extern int count_prin1;
 extern int count_prin2;
+extern int count_prin_verm;
+extern int count_prin_velo;
 
 // Botoes de pedestre
 extern int BOTAO_PEDESTRE_1;
