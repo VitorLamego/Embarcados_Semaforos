@@ -3,11 +3,11 @@
 #include <unistd.h>
 #include <sys/time.h>
 #include <pthread.h>
-#include "includes/handler.h"
-#include "includes/buttons_config.h"
-#include "includes/variables.h"
-#include "includes/message.h"
-#include "includes/cliente.h"
+#include "../includes/handler.h"
+#include "../includes/buttons_config.h"
+#include "../includes/variables.h"
+#include "../includes/message.h"
+#include "../includes/cliente.h"
 
 void* send2SecMessage () {
     while (1) {

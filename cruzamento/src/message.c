@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "includes/variables.h"
-#include "includes/cliente.h"
+#include "../includes/variables.h"
+#include "../includes/cliente.h"
 
 void buildPassMessage() {
     char mensagem[1000];

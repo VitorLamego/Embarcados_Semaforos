@@ -5,8 +5,7 @@
 #include <pthread.h>
 #include <arpa/inet.h>
 #include <string.h>
-#include "includes/listenConnection.h"
-
+#include "../includes/listenConnection.h"
 
 int main (int argc, char** argv) {
 
