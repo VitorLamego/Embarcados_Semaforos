@@ -135,6 +135,7 @@ void handleStopPrincipal(void) {
             if (ms_difference >= 30.0) {
                 velocity = (3.6/(ms_difference)) * 1000;
                 buildNormalVelocityMessage(velocity);
+                velocitySum += velocity;
             }
 
             if (estado > 2) { 
@@ -171,6 +172,7 @@ void handleStopPrincipal2 (void) {
             if (ms_difference >= 30.0) {
                 velocity = (3.6/(ms_difference)) * 1000;
                 buildVelocityMessage(velocity);
+                velocitySum += velocity;
             }
             if (estado > 2) { 
                 count_prin_verm++;

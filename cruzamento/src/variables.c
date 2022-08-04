@@ -17,6 +17,9 @@ int count_prin2 = 0;
 int count_prin_verm = 0;
 int count_prin_velo = 0;
 
+int velocitySum = 0;
+int minutes = 0;
+
 // Botoes de pedestre
 int BOTAO_PEDESTRE_1;
 int BOTAO_PEDESTRE_2;

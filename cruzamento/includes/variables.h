@@ -11,6 +11,9 @@ extern int count_prin2;
 extern int count_prin_verm;
 extern int count_prin_velo;
 
+extern int velocitySum;
+extern int minutes;
+
 // Botoes de pedestre
 extern int BOTAO_PEDESTRE_1;
 extern int BOTAO_PEDESTRE_2;

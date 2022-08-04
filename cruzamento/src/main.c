@@ -39,6 +39,16 @@ void* semaforoController () {
     }
 }
 
+void* setInfoMinute () {
+    while (1) {
+        delay(60000);
+        minutes++;
+        float fluxo = (count_prin1 + count_prin2) / minutes;
+        float velocidadeMedia = velocitySum / (count_prin1 + count_prin2);
+        buildReportMessage(fluxo, velocidadeMedia);
+    }
+}
+
 int main(int argc, char** argv) {
     // Cruzamento 1
 
@@ -52,10 +62,12 @@ int main(int argc, char** argv) {
 
     pthread_t messagemPassagem2s;
     pthread_t semaforos;
-	int res0, res1;
+    pthread_t infoMinuto;
+	int res0, res1, res2;
 
     res1 = pthread_create(&semaforos, NULL, semaforoController, NULL);
 	res0 = pthread_create(&messagemPassagem2s, NULL, send2SecMessage, NULL);
+    res2 = pthread_create(&infoMinuto, NULL, setInfoMinute, NULL);
 
     while(1){}
 
