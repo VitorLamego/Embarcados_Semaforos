@@ -43,7 +43,6 @@ int main(int argc, char** argv) {
     // Cruzamento 1
 
     wiringPiSetup();
-    int number;
     setVariables(argv[1]);
 
     setPinModeSemaforos(semaforo1);

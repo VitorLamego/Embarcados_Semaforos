@@ -10,8 +10,6 @@ void setPinModeSemaforos (int semaforo[3]) {
 }
 
 void setButtons() {
-    printf("%d\n", BOTAO_PEDESTRE_1);
-    printf("%d\n", BOTAO_PEDESTRE_2);
     pinMode(BOTAO_PEDESTRE_1, OUTPUT);
     pinMode(BOTAO_PEDESTRE_2, OUTPUT);
     gettimeofday(&last_changePeople, NULL);

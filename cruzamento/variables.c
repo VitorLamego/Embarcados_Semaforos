@@ -3,14 +3,14 @@
 #include <string.h>
 #include <stdio.h>
 
-int TEMP_ATUAL;
-int delayMin[6];
-int delayMax[6];
-int estado;
-int count_passagem1_auxiliar;
-int count_passagem2_auxiliar;
-int count_prin1;
-int count_prin2;
+int TEMP_ATUAL = 0;
+int delayMin[6] = {10, 3, 1, 5, 3, 1};
+int delayMax[6] = {20, 3, 1, 10, 3, 1};
+int estado = 0;
+int count_passagem1_auxiliar = 0;
+int count_passagem2_auxiliar = 0;
+int count_prin1 = 0;
+int count_prin2 = 0;
 
 // Botoes de pedestre
 int BOTAO_PEDESTRE_1;
