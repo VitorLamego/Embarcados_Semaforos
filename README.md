@@ -2,6 +2,14 @@
 
 O servidor central deve ser rodado na placa cujo Ip corresponde a: 164.41.98.26.
 
+Caso o IP tenha sido alterado, o servidor central deve ser rodado na mesma placa que o Cruzamento 3 e 4. Sendo necessário a alteração do código que está como hardcode. Os arquivos que contém informações de IP são:
+
+```
+cruzmento/src/cliente.c - Linha 21
+cruzamento/src/variables.c - Linha 69 e 70 e Linha 93 e 94
+servidor_central/src/cliente.c - Linha 47 a 50
+```
+
 Para correta execução do servidor central rode os seguintes comandos: 
 
 ```
@@ -12,7 +20,18 @@ bin/run
 
 ## Servidores Distribuídos
 
-Para correta execução dos servidores distribuídos, rode os seguintes comandos:
+Para correta execução dos servidores distribuídos, primeiramente, substitua no código o código IP das placas se alterado:
+
+```
+IPs atuais:
+
+Cruzamento: 1 e 2 - 164.41.98.17
+Cruzamento: 3 e 4 - 164.41.98.26
+```
+
+Substitua os ips, caso seja necessário e ainda náo tenha sido feito na etapa do Servidor Central.
+
+Rode os comandos:
 
 ```
 cd trabalho1/cruzamentos
